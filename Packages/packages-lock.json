@@ -1,10 +1,19 @@
 {
   "dependencies": {
+    "com.framvik.dotnet-libraries": {
+      "version": "https://github.com/Framvik/Unity-DotNet-Libraries.git?path=/Packages/com.framvik.dotnet-libraries",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "1996e5907cefccfd9d11d2926b18e0506cba379d"
+    },
     "com.framvik.engine-tools": {
       "version": "file:com.framvik.engine-tools",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {}
+      "dependencies": {
+        "com.framvik.dotnet-libraries": ""
+      }
     },
     "com.unity.collab-proxy": {
       "version": "2.7.1",
