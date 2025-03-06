@@ -1,0 +1,16 @@
+{
+    "name": "Framvik.EngineTools",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e6b736e606c30ee4a84cb0e4aca07021"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
