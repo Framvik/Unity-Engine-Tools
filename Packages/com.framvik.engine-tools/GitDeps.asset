@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437d49c7377f20440ae9fccab424973e, type: 3}
   m_Name: GitDeps
   m_EditorClassIdentifier: 
-  GitURLs: []
+  GitURLs:
+  - https://github.com/Framvik/Unity-DotNet-Libraries.git?path=/Packages/com.framvik.dotnet-libraries
