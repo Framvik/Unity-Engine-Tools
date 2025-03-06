@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEditor;
 using Framvik.EngineTools.Textures;
+using System.IO;
 
 namespace Framvik.EditorTools.Menus
 {
@@ -67,6 +68,8 @@ namespace Framvik.EditorTools.Menus
 
             if (m_MergedTexture != null)
             {
+                m_SaveFormat = (SaveTextureFileFormat)EditorGUILayout.EnumPopup("Save Format", m_SaveFormat);
+
                 if (GUILayout.Button("Export Texture"))
                 {
                     var path = EditorUtility.SaveFilePanel("Select save file location", m_DefaultDirectory, m_DefaultName, 
@@ -113,7 +116,6 @@ namespace Framvik.EditorTools.Menus
             m_MergedTexture = TextureMerger.MergeTexturesByMask(m_TextureA, m_TextureB, m_TextureMask, textureChannels <= 3);
             m_DefaultDirectory = AssetDatabase.GetAssetPath(m_TextureA);
             m_DefaultName = m_TextureA.name;
-            m_SaveFormat = textureChannels <= 3 ? SaveTextureFileFormat.JPG : SaveTextureFileFormat.PNG;
         }
 
         private void DrawAlphaGUI()
@@ -143,6 +145,9 @@ namespace Framvik.EditorTools.Menus
 
         private void MergeTexturesAlpha()
         {
+            m_DefaultName = m_RGBTexture.name;
+            m_SaveFormat = TextureToFileUtility.FileExtToSaveTextureFileFormat(
+                Path.GetExtension(m_RGBTexture.name), Path.GetExtension(m_AlphaTexture.name));
             m_MergedTexture = m_GrayscaleAlpha ?
                 TextureMerger.MergeTexturesAlphaGrayscale(m_RGBTexture, m_AlphaTexture, m_InvertAlpha) :
                 TextureMerger.MergeTexturesAlpha(m_RGBTexture, m_AlphaTexture, m_InvertAlpha);

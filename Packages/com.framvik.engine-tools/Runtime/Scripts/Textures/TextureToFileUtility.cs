@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace Framvik.EngineTools.Textures
@@ -89,22 +90,31 @@ namespace Framvik.EngineTools.Textures
             return SaveTextureFileFormat.PNG;
         }
 
-        /// <summary>
-        /// Returns file extension for the given SaveTextureFileFormat (without period, ex: 'png').
-        /// </summary>
-        public static SaveTextureFileFormat TextureFormatToSaveTextureFileFormat(TextureFormat textureFormat)
+        public static SaveTextureFileFormat FileExtToSaveTextureFileFormat(params string[] exts)
         {
-            if (textureFormat == TextureFormat.ARGB32 || textureFormat == TextureFormat.ARGB4444)
+            if (exts.Contains("exr"))
                 return SaveTextureFileFormat.EXR;
-            else if (
-                textureFormat == TextureFormat.RGB24 ||
-                textureFormat == TextureFormat.RGB48 ||
-                textureFormat == TextureFormat.RGB565 ||
-                textureFormat == TextureFormat.RGB9e5Float)
-                return SaveTextureFileFormat.JPG;
-            else
-                return SaveTextureFileFormat.PNG;
+            else if (exts.Contains("tga"))
+                return SaveTextureFileFormat.TGA;
+            return SaveTextureFileFormat.PNG;
         }
+
+        ///// <summary>
+        ///// Returns file extension for the given SaveTextureFileFormat (without period, ex: 'png').
+        ///// </summary>
+        //public static SaveTextureFileFormat TextureFormatToSaveTextureFileFormat(TextureFormat textureFormat)
+        //{
+        //    if (textureFormat == TextureFormat.ARGB32 || textureFormat == TextureFormat.ARGB4444)
+        //        return SaveTextureFileFormat.EXR;
+        //    else if (
+        //        textureFormat == TextureFormat.RGB24 ||
+        //        textureFormat == TextureFormat.RGB48 ||
+        //        textureFormat == TextureFormat.RGB565 ||
+        //        textureFormat == TextureFormat.RGB9e5Float)
+        //        return SaveTextureFileFormat.JPG;
+        //    else
+        //        return SaveTextureFileFormat.PNG;
+        //}
 
         /// <summary>
         /// Converts a RenderTexture to a Texture2D with given texture file format.

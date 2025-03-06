@@ -55,15 +55,13 @@ namespace Framvik.EditorTools.Menus
             return texture;
         }
 
-        static void SaveNeighbourTexture(Texture2D mainTexture, Texture2D neighbourTexture, string saveName, SaveTextureFileFormat saveFormat, bool overrideSaveFormat = true)
+        static void SaveNeighbourTexture(Texture2D mainTexture, Texture2D neighbourTexture, string saveName, SaveTextureFileFormat saveFormat)
         {
             var filePath = AssetDatabase.GetAssetPath(mainTexture);
             var directoryPath = Path.GetDirectoryName(filePath);
             var savePath = Path.Combine(directoryPath, saveName);
             if (Path.HasExtension(savePath))
                 savePath = Path.ChangeExtension(savePath, null);
-            if (overrideSaveFormat && Path.HasExtension(filePath))
-                saveFormat = TextureToFileUtility.FileExtToSaveTextureFileFormat(Path.GetExtension(filePath));
             TextureToFileUtility.SaveTexture2DToFile(neighbourTexture, savePath, saveFormat);
             AssetDatabase.Refresh();
         }
@@ -83,7 +81,10 @@ namespace Framvik.EditorTools.Menus
                         BlueChannel = mainTexture,
                         AlphaChannel = alphaTexture
                     });
-                    SaveNeighbourTexture(mainTexture, tex, mainTexture.name + "Smoothness", SaveTextureFileFormat.PNG, true);
+                    var mainExt = Path.GetExtension(AssetDatabase.GetAssetPath(mainTexture));
+                    var alphaExt = Path.GetExtension(AssetDatabase.GetAssetPath(alphaTexture));
+                    SaveNeighbourTexture(mainTexture, tex, mainTexture.name + "Smoothness", 
+                        TextureToFileUtility.FileExtToSaveTextureFileFormat(mainExt, alphaExt));
                 }
             }
         }
@@ -103,7 +104,10 @@ namespace Framvik.EditorTools.Menus
                 if (roughnessTexture != null)
                 {
                     var tex = TextureMerger.MergeTexturesAlphaGrayscale(mainTexture, roughnessTexture, true);
-                    SaveNeighbourTexture(mainTexture, tex, mainTexture.name + "Smoothness", SaveTextureFileFormat.PNG);
+                    var mainExt = Path.GetExtension(AssetDatabase.GetAssetPath(mainTexture));
+                    var texExt = Path.GetExtension(AssetDatabase.GetAssetPath(tex));
+                    SaveNeighbourTexture(mainTexture, tex, mainTexture.name + "Smoothness", 
+                        TextureToFileUtility.FileExtToSaveTextureFileFormat(mainExt, texExt));
                 }
             }
         }
