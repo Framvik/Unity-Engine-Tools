@@ -2,7 +2,8 @@
     "name": "Framvik.EditorTools",
     "rootNamespace": "",
     "references": [
-        "GUID:d553538e54291b14a9a651aebf82272c"
+        "GUID:d553538e54291b14a9a651aebf82272c",
+        "GUID:e6b736e606c30ee4a84cb0e4aca07021"
     ],
     "includePlatforms": [
         "Editor"

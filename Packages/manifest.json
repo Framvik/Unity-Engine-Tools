@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.framvik.dotnet-libraries": "https://github.com/Framvik/Unity-DotNet-Libraries.git?path=/Packages/com.framvik.dotnet-libraries",
+    "com.framvik.git-asset-deps": "https://github.com/Framvik/Unity-Git-Asset-Registry.git?path=/Packages/com.framvik.git-asset-deps",
     "com.unity.collab-proxy": "2.7.1",
     "com.unity.feature.development": "1.0.1",
     "com.unity.textmeshpro": "3.0.7",
@@ -36,7 +38,6 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-	"com.framvik.dotnet-libraries": "https://github.com/Framvik/Unity-DotNet-Libraries.git?path=/Packages/com.framvik.dotnet-libraries"
+    "com.unity.modules.xr": "1.0.0"
   }
 }

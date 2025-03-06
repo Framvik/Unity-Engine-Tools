@@ -3,8 +3,5 @@
   "version": "0.0.0",
   "displayName": "Framvik Unity Engine Tools",
   "description": "Contains utility scripts and functionality based on the Unity engine and editor namespaces.",
-  "unity": "2022.3",
-  "dependencies": {
-    "com.framvik.dotnet-libraries": ""
-  }
+  "unity": "2022.3"
 }

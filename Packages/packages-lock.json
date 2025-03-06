@@ -11,9 +11,14 @@
       "version": "file:com.framvik.engine-tools",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {
-        "com.framvik.dotnet-libraries": ""
-      }
+      "dependencies": {}
+    },
+    "com.framvik.git-asset-deps": {
+      "version": "https://github.com/Framvik/Unity-Git-Asset-Registry.git?path=/Packages/com.framvik.git-asset-deps",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "97434ddfc1330703fae0dc98d65b559ae2420789"
     },
     "com.unity.collab-proxy": {
       "version": "2.7.1",
