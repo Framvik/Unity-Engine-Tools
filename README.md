@@ -6,7 +6,17 @@ This project contains utility scripts and functionality based on the Unity engin
 
 ## Installing The Package
 
-Simply add the following URL using the menu inside the Package Manager menu `+ > Add package from git URL`.
+This package references other git packages using the com.framvik.git-asset-deps package found at: 
+
+https://github.com/Framvik/Unity-Git-Asset-Registry
+
+Make sure to install it first by adding the following URL using the menu inside the Package Manager menu `+ > Add package from git URL`.
+
+```
+https://github.com/Framvik/Unity-Git-Asset-Registry.git?path=/Packages/com.framvik.git-asset-deps
+```
+
+Then you can simply add the following URL in the same way.
 
 ```
 https://github.com/Framvik/Unity-Engine-Tools.git?path=/Packages/com.framvik.engine-tools
