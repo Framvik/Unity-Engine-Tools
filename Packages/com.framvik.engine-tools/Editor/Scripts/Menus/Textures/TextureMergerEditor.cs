@@ -74,7 +74,7 @@ namespace Framvik.EditorTools.Menus
                 {
                     var path = EditorUtility.SaveFilePanel("Select save file location", m_DefaultDirectory, m_DefaultName, 
                         TextureToFileUtility.SaveTextureFileFormatToFileExt(m_SaveFormat));
-                    TextureToFileUtility.SaveTexture2DToFile(m_MergedTexture, path, m_SaveFormat);
+                    TextureToFileUtility.SaveTexture2DToFile(m_MergedTexture, path, m_SaveFormat, 100);
                 }
                 var r = GUILayoutUtility.GetLastRect();
                 var w = this.position.width / 2;

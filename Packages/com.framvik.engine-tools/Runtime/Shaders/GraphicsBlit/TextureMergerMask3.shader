@@ -10,6 +10,7 @@ Shader "GraphicsBlit/TextureMergerMask3"
     SubShader
     {
         Tags { "RenderType"="Opaque" }
+        LOD 100
 
         Pass
         {

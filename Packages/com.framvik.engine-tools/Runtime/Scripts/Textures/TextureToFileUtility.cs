@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 
 namespace Framvik.EngineTools.Textures
 {
@@ -21,7 +22,7 @@ namespace Framvik.EngineTools.Textures
         /// </summary>
         public static void SaveRenderTextureToFile(RenderTexture renderTexture, string filePath, SaveTextureFileFormat fileFormat = SaveTextureFileFormat.PNG, int jpgQuality = 95)
         {
-            Texture2D tex = RenderTextureToTexture2D(renderTexture, fileFormat);
+            Texture2D tex = RenderTextureUtility.RenderTextureToTexture2D(renderTexture);
             SaveTexture2DToFile(tex, filePath, fileFormat, jpgQuality);
             if (Application.isPlaying)
                 Object.Destroy(tex);
@@ -33,7 +34,7 @@ namespace Framvik.EngineTools.Textures
         /// <summary>
         /// Saves a Texture2D to disk with the specified filename and image format
         /// </summary>
-        public static void SaveTexture2DToFile(Texture2D tex, string filePath, SaveTextureFileFormat fileFormat, int jpgQuality = 95)
+        public static void SaveTexture2DToFile(Texture2D tex, string filePath, SaveTextureFileFormat fileFormat = SaveTextureFileFormat.PNG, int jpgQuality = 95)
         {
             switch (fileFormat)
             {
@@ -97,41 +98,6 @@ namespace Framvik.EngineTools.Textures
             else if (exts.Contains("tga"))
                 return SaveTextureFileFormat.TGA;
             return SaveTextureFileFormat.PNG;
-        }
-
-        ///// <summary>
-        ///// Returns file extension for the given SaveTextureFileFormat (without period, ex: 'png').
-        ///// </summary>
-        //public static SaveTextureFileFormat TextureFormatToSaveTextureFileFormat(TextureFormat textureFormat)
-        //{
-        //    if (textureFormat == TextureFormat.ARGB32 || textureFormat == TextureFormat.ARGB4444)
-        //        return SaveTextureFileFormat.EXR;
-        //    else if (
-        //        textureFormat == TextureFormat.RGB24 ||
-        //        textureFormat == TextureFormat.RGB48 ||
-        //        textureFormat == TextureFormat.RGB565 ||
-        //        textureFormat == TextureFormat.RGB9e5Float)
-        //        return SaveTextureFileFormat.JPG;
-        //    else
-        //        return SaveTextureFileFormat.PNG;
-        //}
-
-        /// <summary>
-        /// Converts a RenderTexture to a Texture2D with given texture file format.
-        /// </summary>
-        public static Texture2D RenderTextureToTexture2D(RenderTexture renderTexture, SaveTextureFileFormat fileFormat = SaveTextureFileFormat.PNG)
-        {
-            Texture2D tex;
-            if (fileFormat != SaveTextureFileFormat.EXR)
-                tex = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false, false);
-            else
-                tex = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGBAFloat, false, true);
-            var oldRt = RenderTexture.active;
-            RenderTexture.active = renderTexture;
-            tex.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-            tex.Apply();
-            RenderTexture.active = oldRt;
-            return tex;
         }
     }
 }

@@ -32,5 +32,27 @@ namespace Framvik.EditorTools.Menus
                 AssetDatabase.Refresh();
             }
         }
+
+        [MenuItem(MenuPathsConstants.ASSET_TOOLS + "Textures/Invert", true, MenuPathsConstants.PRIO)]
+        static bool InvertValidate()
+        {
+            return Selection.activeObject is Texture2D;
+        }
+
+        [MenuItem(MenuPathsConstants.ASSET_TOOLS + "Textures/Invert", false, MenuPathsConstants.PRIO)]
+        static void Invert()
+        {
+            Texture2D mainTexture = Selection.activeObject as Texture2D;
+            if (mainTexture != null)
+            {
+                var filePath = AssetDatabase.GetAssetPath(mainTexture);
+                var directoryPath = Path.GetDirectoryName(filePath);
+                var savePath = Path.Combine(directoryPath, mainTexture.name + "Inverted");
+                var extension = Path.GetExtension(filePath).ToLower();
+                Texture2D invertTexture = TextureModifier.InvertColors(mainTexture);
+                TextureToFileUtility.SaveTexture2DToFile(invertTexture, savePath, TextureToFileUtility.FileExtToSaveTextureFileFormat(extension), 100);
+                AssetDatabase.Refresh();
+            }
+        }
     }
 }

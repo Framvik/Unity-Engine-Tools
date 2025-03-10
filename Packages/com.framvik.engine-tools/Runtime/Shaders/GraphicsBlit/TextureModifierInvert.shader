@@ -1,11 +1,9 @@
-/// Used by TextureMerger Graphics.Blit() to combine 2 textures using a mask.
-Shader "GraphicsBlit/TextureMergerMask"
+/// Used by TextureModifier Graphics.Blit() to make texture inverted.
+Shader "GraphicsBlit/TextureModifierInvert"
 {
     Properties
     {
-        _TexA ("Texture A", 2D) = "white" {}
-        _TexB ("Texture B", 2D) = "white" {}
-        _TexMask ("Texture Mask", 2D) = "white" {}
+        _Texture ("Texture RGB", 2D) = "white" {}
     }
     SubShader
     {
@@ -30,9 +28,7 @@ Shader "GraphicsBlit/TextureMergerMask"
                 float4 vertex : SV_POSITION;
             };
 
-            sampler2D _TexA;
-            sampler2D _TexB;
-            sampler2D _TexMask;
+            sampler2D _Texture;
 
             v2f vert (appdata v)
             {
@@ -42,13 +38,11 @@ Shader "GraphicsBlit/TextureMergerMask"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            float4 frag (v2f i) : SV_Target
             {
-                float4 colA = tex2D(_TexA, i.uv);
-                float4 colB = tex2D(_TexB, i.uv);
-                float3 colM = tex2D(_TexMask, i.uv);
-                float l = (colM.r+colM.g+colM.b)/3;
-                return lerp(colA, colB, l);
+                float4 tex = tex2D(_Texture, i.uv);
+                float3 col = float3(1.0 - tex.r, 1.0 - tex.g, 1.0 - tex.b);
+                return float4(col.rgb, 1);
             }
             ENDCG
         }

@@ -10,6 +10,7 @@ Shader "GraphicsBlit/TextureModifierMakeGrayscale"
     SubShader
     {
         Tags { "RenderType"="Opaque" }
+        LOD 100
 
         Pass
         {
