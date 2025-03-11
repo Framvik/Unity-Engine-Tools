@@ -1,1 +1,0 @@
-https://github.com/Framvik/Unity-DotNet-Libraries.git?path=/Packages/com.framvik.dotnet-libraries
